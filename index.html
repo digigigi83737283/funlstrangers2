@@ -1,0 +1,1037 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+<script
+	src="https://cdn.jsdelivr.net/gh/xTracky/static@latest/utm-handler.js"
+	data-token="27174641-730a-4d2f-af1e-0f9c2ca6fc92"
+>
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pandora - Stranger Things</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #000000;
+            line-height: 1.5;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 16px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .search-container {
+            max-width: 480px;
+            margin: 16px auto 0;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 45px 12px 16px;
+            border: 1px solid #d1d1d1;
+            border-radius: 2px;
+            font-size: 14px;
+            color: #4a4a4a;
+            background: #fafafa;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #000000;
+            background: #ffffff;
+        }
+
+        .search-icon, .clear-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .clear-icon {
+            right: 40px;
+        }
+
+        .search-icon {
+            right: 12px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .promo-banner {
+            background: #00a650;
+            color: #ffffff;
+            padding: 16px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .promo-title {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            opacity: 0.95;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .timer-block {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            padding: 10px 14px;
+            min-width: 65px;
+        }
+
+        .timer-number {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1;
+            display: block;
+        }
+
+        .timer-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            opacity: 0.85;
+            letter-spacing: 0.5px;
+        }
+
+        .promo-date {
+            font-size: 11px;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+
+        .page-header {
+            margin-bottom: 20px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .product-count {
+            font-size: 16px;
+            color: #666;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        .breadcrumb {
+            margin: 12px 0 24px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .timer-block {
+                min-width: 58px;
+                padding: 8px 12px;
+            }
+
+            .timer-number {
+                font-size: 24px;
+            }
+
+            .timer-label {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .product-info {
+                padding: 12px;
+            }
+
+            .product-title {
+                font-size: 13px;
+                min-height: 36px;
+            }
+
+            .timer {
+                gap: 12px;
+            }
+
+            .timer-block {
+                min-width: 52px;
+                padding: 7px 10px;
+            }
+
+            .timer-number {
+                font-size: 20px;
+            }
+        }
+
+        .product-card {
+            background: #ffffff;
+            position: relative;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .product-image {
+            position: relative;
+            padding: 30px;
+            background: #f0f0f0;
+            text-align: center;
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .wishlist-icon {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .wishlist-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: #999;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .wishlist-icon:hover svg {
+            stroke: #000;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.4;
+            color: #000;
+            min-height: 40px;
+        }
+
+        .product-metal {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .price-container {
+            margin-bottom: 12px;
+        }
+
+        .price-old {
+            font-size: 14px;
+            color: #666;
+            text-decoration: line-through;
+            margin-bottom: 6px;
+        }
+
+        .price-current-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .discount-badge {
+            background: #00a650;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 3px 7px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .product-installment {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .product-size {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        .size-option {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #000;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .size-option.unavailable {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 16px;
+            background: #ffb3c1;
+            border: none;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.2s;
+            color: #000;
+        }
+
+        .add-to-cart:hover {
+            background: #ff9db0;
+        }
+
+        .viewed-all {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer-info {
+            background: #2b2b2b;
+            color: #ffffff;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .info-item {
+            padding: 20px;
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .info-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #d1d1d1;
+        }
+
+        .footer-bottom {
+            background: #ffffff;
+            padding: 40px 20px 30px;
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .payment-methods, .security {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .payment-icon {
+            height: auto;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .security-badge {
+            height: 50px;
+            width: auto;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: #666;
+            margin: 40px 0 30px;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            padding: 10px;
+        }
+
+        .social-icon:hover {
+            background: #333;
+        }
+
+        .social-icon img {
+            width: 20px;
+            height: 20px;
+            filter: invert(1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .page-title {
+                font-size: 20px;
+            }
+
+            .product-count {
+                font-size: 14px;
+                display: block;
+                margin-left: 0;
+                margin-top: 4px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .footer-info {
+                padding: 30px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://pandorajoias.vtexassets.com/assets/vtex/assets-builder/pandorajoias.pandorajoiasio/3.53.175/logo-modal-newsletter___a1e932dad1a9f3377250086f605f8dcd.svg" alt="Pandora" class="logo">
+        <div class="search-container">
+            <input type="text" class="search-box" value="stranger things" readonly>
+            <span class="clear-icon">✕</span>
+            <span class="search-icon">⚲</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="promo-banner">
+            <div class="promo-title">Oferta por Tempo Limitado</div>
+            <div class="timer">
+                <div class="timer-block">
+                    <span class="timer-number" id="hours">08</span>
+                    <div class="timer-label">Horas</div>
+                </div>
+                <div class="timer-block">
+                    <span class="timer-number" id="minutes">00</span>
+                    <div class="timer-label">Minutos</div>
+                </div>
+                <div class="timer-block">
+                    <span class="timer-number" id="seconds">00</span>
+                    <div class="timer-label">Segundos</div>
+                </div>
+            </div>
+            <div class="promo-date" id="current-date"></div>
+        </div>
+
+        <div class="page-header">
+            <h1 class="page-title">stranger things<span class="product-count">11 produtos</span></h1>
+        </div>
+        
+        <div class="breadcrumb">
+            <a href="#">Home</a> > stranger things
+        </div>
+
+        <div class="products-grid">
+            <!-- Produto 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/433318-300-300?v=638990916888700000&width=300&height=300&aspect=true" alt="Charm Prata Demogorgon">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Charm Prata Demogorgon De Stranger Things</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                        
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 108,81</div>
+                            <span class="discount-badge">91% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 10,88 sem juros</div>
+                    <div class="product-size">Tamanho</div>
+                    <span class="size-option">U</span>
+                    <a href="/produto1">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/433828-300-300?v=639015889965100000&width=300&height=300&aspect=true" alt="Bracelete Prata">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Bracelete Prata Em Trama E Fecho Stranger Things</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                        
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 131,12</div>
+                            <span class="discount-badge">92% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 13,11 sem juros</div>
+                    <div class="product-size">Tamanho</div>
+                    <span class="size-option">16</span>
+                    <span class="size-option">17</span>
+                    <span class="size-option">18</span>
+                    <span class="size-option">20</span>
+                    <a href="/produto2">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/383076-300-300?v=638853732916270000&width=300&height=300&aspect=true" alt="Anel Stranger Things">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Anel De Prata Stranger Things - Caveira D&D</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                        
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 98,34</div>
+                            <span class="discount-badge">94% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 9,83 sem juros</div>
+                    <div class="product-size">Tamanho</div>
+                    <span class="size-option">10</span>
+                    <span class="size-option">12</span>
+                    <span class="size-option">14</span>
+                    <span class="size-option">16</span>
+                    <a href="/produto3">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+<!-- Produto 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/181166/PNGTRPNT_590719_RGB.png?v=638822327614670000" alt="Bracelete Prata">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Bracelete Pandora Pulseira De Prata E Fecho Coracao</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                        
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 79,90</div>
+                            <span class="discount-badge">90% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 7,99 sem juros</div>
+                    <div class="product-size">Tamanho</div>
+                    <span class="size-option">16</span>
+                    <span class="size-option">17</span>
+                    <span class="size-option">18</span>
+                    <span class="size-option">20</span>
+                    <a href="/produto4">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+            <!-- Produto 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/177331/PNGTRPNT_598498C01_RGB.png?v=638815373669100000" alt="Bracelete Prata">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Bracelete Estrela Cadente</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                        
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 111,92</div>
+                            <span class="discount-badge">92% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 11,92 sem juros</div>
+                    <div class="product-size">Tamanho</div>
+                    <span class="size-option">16</span>
+                    <span class="size-option">17</span>
+                    <span class="size-option">18</span>
+                    <span class="size-option">20</span>
+                    <a href="/produto5">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+            <!-- Produto 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/383721-300-300?v=638854624597600000&width=300&height=300&aspect=true" alt="Charm Pendente">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Charm Prata Pendente Stranger Things - Mundo Invertido</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                        
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 138,90</div>
+                            <span class="discount-badge">92% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 13,89 sem juros</div>
+                     <div class="product-size">Tamanho</div>
+                    <span class="size-option">16</span>
+                    <span class="size-option">17</span>
+                    <span class="size-option">18</span>
+                    <span class="size-option">20</span>
+                    <a href="/produto6">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+
+            <!-- Produto 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/433378-300-300?v=638990922088970000&width=300&height=300&aspect=true" alt="Charm Dado D20">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Charm Pendente Stranger Things Dado D20 Do Clube Hellfire</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                        
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 84,67</div>
+                            <span class="discount-badge">94% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 8,47 sem juros</div>
+                     <div class="product-size">Tamanho</div>
+                    <span class="size-option">16</span>
+                    <span class="size-option">17</span>
+                    <span class="size-option">18</span>
+                    <span class="size-option">20</span>
+                    <a href="/produto7">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+
+            <!-- Produto 7 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/409547-300-300?v=638966713929870000&width=300&height=300&aspect=true" alt="Bracelete Friends">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Bracelete Prata Stranger Things Friends Don T Lie</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                        
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 125,93</div>
+                            <span class="discount-badge">93% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 12,59 sem juros</div>
+                    <div class="product-size">Tamanho</div>
+                   <span class="size-option">16</span>
+                    <span class="size-option">17</span>
+                    <span class="size-option">18</span>
+                    <span class="size-option">20</span>
+                    <a href="/produto8">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+
+            <!-- Produto 8 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/425280-300-300?v=638996795462600000&width=300&height=300&aspect=true" alt="Anel Coração">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Anel Prata Stranger Things Coração Friends Don T Lie</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                        
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 91,74</div>
+                            <span class="discount-badge">94% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 9,17 sem juros</div>
+                    <div class="product-size">Tamanho</div>
+                    <span class="size-option">10</span>
+                    <span class="size-option">12</span>
+                    <span class="size-option">14</span>
+                    <span class="size-option">16</span>
+                    <a href="/produto9">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+            <!-- Produto 9 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/433323-300-300?v=638990917413700000&width=300&height=300&aspect=true" alt="Anel Coração">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Charm Prata Pendente Luzes De Natal Stranger Things</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                        
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 138,90</div>
+                            <span class="discount-badge">92% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 9,17 sem juros</div>
+                    <div class="product-size">Tamanho</div>
+                    <span class="size-option">16</span>
+                    <span class="size-option">17</span>
+                    <span class="size-option">18</span>
+                    <span class="size-option">20</span>
+                    <a href="/produto10">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+            <!-- Produto 10 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="wishlist-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <img src="https://pandorajoias.vtexassets.com/arquivos/ids/433340-300-300?v=638990918762030000&width=300&height=300&aspect=true" alt="Anel Coração">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Charm Prata Stranger Things Coração Friends Don't Lie</div>
+                    <div class="product-metal">Metal: <strong>Prata de Lei</strong></div>
+                    <div class="price-container">
+                       
+                        <div class="price-current-wrapper">
+                            <div class="product-price">R$ 138,90</div>
+                            <span class="discount-badge">92% OFF</span>
+                        </div>
+                    </div>
+                    <div class="product-installment">ou 10x de R$ 9,17 sem juros</div>
+                    <div class="product-size">Tamanho</div>
+                    <span class="size-option">16</span>
+                    <span class="size-option">17</span>
+                    <span class="size-option">18</span>
+                    <span class="size-option">20</span>
+                    <a href="/produto11">
+  <button class="add-to-cart">Comprar Agora</button>
+</a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="viewed-all">
+            Você viu todos os 11 produtos
+        </div>
+    </div>
+
+    <div class="footer-info">
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-icon">💳</div>
+                <div class="info-title">Parcelamento</div>
+                <div class="info-description">Parcele suas compras em 10X<br>sem juros no cartão.</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">↻</div>
+                <div class="info-title">Troca Fácil</div>
+                <div class="info-description">Não serviu? A PANDORA faz<br>a troca gratuitamente.</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">📦</div>
+                <div class="info-title">Entrega</div>
+                <div class="info-description">Frete grátis em suas compras<br>a partir de R$890,00.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="payment-methods">
+            <div class="section-title">Formas de Pagamento</div>
+            <div class="payment-icons">
+                <img src="https://pandorajoias.vtexassets.com/assets/vtex/assets-builder/pandorajoias.pandorajoiasio/3.53.505/payments/payments___a91adbd68b1b216fc3c7b5178b5d9a52.jpg" alt="Formas de Pagamento" class="payment-icon">
+            </div>
+        </div>
+
+        <div class="security">
+            <div class="section-title">Segurança</div>
+            <div class="security-badges">
+                <img src="https://pandorajoias.vtexassets.com/assets/vtex/assets-builder/pandorajoias.pandorajoiasio/3.53.505/security/pci___02232b90026e3fcfa1ab4be110157787.png" alt="PCI Certified" class="security-badge">
+                <img src="https://pandorajoias.vtexassets.com/assets/vtex/assets-builder/pandorajoias.pandorajoiasio/3.53.505/security/lets___d97d8bc0ca652fbac82512e331fab7ed.png" alt="Let's Encrypt" class="security-badge">
+            </div>
+        </div>
+
+        <div class="company-info">
+            Pandora Do Brasil Comércio E Importação LTDA | Avenida Dr Chucri Zaidan, 1240 - 13° andar - Cj. 1301 & 1303<br>
+            Golden Tower – Morumbi | CEP 04711-130 São Paulo – SP | Brazil | CNPJ: 11.023.174/0001-96
+        </div>
+
+        <div class="social-links">
+            <a href="#" class="social-icon">
+                <img src="https://pandorajoias.vtexassets.com/assets/vtex/assets-builder/pandorajoias.pandorajoiasio/3.53.505/icons/social/instagram___2965f47c80b0d56629b0e346cfefb916.svg" alt="Instagram">
+            </a>
+            <a href="#" class="social-icon">
+                <img src="https://pandorajoias.vtexassets.com/assets/vtex/assets-builder/pandorajoias.pandorajoiasio/3.53.505/icons/social/facebook___a07859e34e27ae77a7e53ffecf64dc1a.svg" alt="Facebook">
+            </a>
+            <a href="#" class="social-icon">
+                <img src="https://pandorajoias.vtexassets.com/assets/vtex/assets-builder/pandorajoias.pandorajoiasio/3.53.505/icons/social/twitter___bb85c51c2c88480187392e7d1d22c90e.svg" alt="Twitter">
+            </a>
+            <a href="#" class="social-icon">
+                <img src="https://pandorajoias.vtexassets.com/assets/vtex/assets-builder/pandorajoias.pandorajoiasio/3.53.505/icons/social/youtube___5cba8e982eb85914e397df20b4468fe4.svg" alt="YouTube">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Timer de 8 horas
+        let endTime = new Date().getTime() + (8 * 60 * 60 * 1000);
+        
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = endTime - now;
+            
+            if (distance < 0) {
+                // Reinicia o timer para mais 8 horas
+                endTime = new Date().getTime() + (8 * 60 * 60 * 1000);
+                return;
+            }
+            
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        
+        // Atualiza a data atual
+        function updateDate() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const dateStr = now.toLocaleDateString('pt-BR', options);
+            document.getElementById('current-date').textContent = dateStr;
+        }
+        
+        // Inicia os timers
+        updateTimer();
+        updateDate();
+        setInterval(updateTimer, 1000);
+        setInterval(updateDate, 60000); // Atualiza a data a cada minuto
+    </script>
+</body>
+</html>
